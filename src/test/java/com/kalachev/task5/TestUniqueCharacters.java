@@ -150,7 +150,7 @@ class TestUniqueCharacters {
 		  
 		  uniqueCharacters.printUniqs(INPUT0, lru);
 		  String expected = INPUT0;
-		  String actual = lru.displayCacheContentKeys(lru);
+		  String actual = lru.displayCacheContentKeys();
 		  
 		  assertEquals(expected, actual);
 	}
@@ -163,7 +163,7 @@ class TestUniqueCharacters {
 		  uniqueCharacters.printUniqs(INPUT0, lru);
 		  uniqueCharacters.printUniqs(INPUT1, lru);
 		  String expected = INPUT1;
-		  String actual = lru.displayCacheContentKeys(lru);
+		  String actual = lru.displayCacheContentKeys();
 		  
 		  assertEquals(expected, actual);
 	}
@@ -179,7 +179,7 @@ class TestUniqueCharacters {
 		  uniqueCharacters.printUniqs(INPUT3, lru);
 		  uniqueCharacters.printUniqs(INPUT4, lru);
 		  String expected =INPUT0 +"," + INPUT1 + "," + INPUT2 + "," + INPUT3 + "," + INPUT4;
-		  String actual = lru.displayCacheContentKeys(lru);
+		  String actual = lru.displayCacheContentKeys();
 		  
 		  assertEquals(expected, actual);
 	}
@@ -195,7 +195,7 @@ class TestUniqueCharacters {
 		  uniqueCharacters.printUniqs(INPUT3, lru);
 		  uniqueCharacters.printUniqs(INPUT4, lru);
 		  String expected =INPUT2 + "," + INPUT3 + "," + INPUT4;
-		  String actual = lru.displayCacheContentKeys(lru);
+		  String actual = lru.displayCacheContentKeys();
 		  
 		  assertEquals(expected, actual);
 	}
@@ -211,7 +211,7 @@ class TestUniqueCharacters {
 		  uniqueCharacters.printUniqs(INPUT0, lru);
 		  uniqueCharacters.printUniqs(INPUT0, lru);
 		  String expected =INPUT0;
-		  String actual = lru.displayCacheContentKeys(lru);
+		  String actual = lru.displayCacheContentKeys();
 		  
 		  assertEquals(expected, actual);
 	}

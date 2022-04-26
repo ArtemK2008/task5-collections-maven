@@ -6,7 +6,7 @@ import java.util.Map;
 public class UniqueCharacters {
 	static final String NEWLINE = System.lineSeparator();
 	private StringBuilder createdOutoutSourcesString;
-	
+
 	public UniqueCharacters() {
 		this.createdOutoutSourcesString = new StringBuilder();
 	}
@@ -28,7 +28,7 @@ public class UniqueCharacters {
 		return createdOutoutSourcesString.toString();
 	}
 	
-	private static LinkedHashMap<Character, Integer> createOutputMap(String input) {
+	private LinkedHashMap<Character, Integer> createOutputMap(String input) {
 		LinkedHashMap<Character, Integer> uniqCharactersMap = new LinkedHashMap<>();
 		for (Character c : input.toCharArray()) {
 			if (!uniqCharactersMap.containsKey(c)) {
@@ -40,7 +40,7 @@ public class UniqueCharacters {
 		return uniqCharactersMap;
 	}
 	
-	private static String doThePrint(String input) {
+	private String doThePrint(String input) {
 		LinkedHashMap<Character, Integer> uniqCharactersMap = createOutputMap(input);
 		StringBuilder sb = new StringBuilder();
 		sb.append(input);
@@ -53,14 +53,14 @@ public class UniqueCharacters {
 		return sb.toString();
 	}
 
-	private static String getCacheSource(String input) {
+	private String getCacheSource(String input) {
 		return input +NEWLINE + "this string was outputed from cache" + NEWLINE;
 	}
-	private static String getCalculationSource(String input) {
+	private String getCalculationSource(String input) {
 		return input +NEWLINE + "this string was outputed from calculations" + NEWLINE;
 	}
 	
-	private static void checkForNull(String input) {
+	private void checkForNull(String input) {
 		if(input == null) {
 			throw new IllegalArgumentException();
 		}

@@ -21,9 +21,9 @@ public class LruCache {
 		cache.put(input, output);
 	}
 	
-	public String displayCacheContentKeys(LruCache lruCache) {
+	public String displayCacheContentKeys() {
 		StringBuilder sb = new StringBuilder();
-		for(String s: lruCache.cache.keySet()) {
+		for(String s: cache.keySet()) {
 			sb.append(s + ",");
 		}
 		sb.deleteCharAt(sb.length()-1);
