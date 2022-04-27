@@ -17,7 +17,7 @@ class TestUniqueCharacters {
 	
 	@Test
 	void printUniques_shouldReturnIlligalArgumentException_whenInpuIsNull() {
-		LruCache lru = new LruCache(1);
+		  Cache lru = new LruCache(1);
 		  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 		  
 	     assertThrows(IllegalArgumentException.class, () -> uniqueCharacters.printUniqs(NULL, lru));
@@ -25,7 +25,7 @@ class TestUniqueCharacters {
 	
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenEmptyInput() {
-	  LruCache lru = new LruCache(1);
+	  Cache lru = new LruCache(1);
 	  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 	  
 	  String expected = String.format
@@ -36,7 +36,7 @@ class TestUniqueCharacters {
 	
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput0() {
-	  LruCache lru = new LruCache(1);
+      Cache lru = new LruCache(1);
 	  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 	  
 	  String expected = String.format
@@ -55,7 +55,7 @@ class TestUniqueCharacters {
 }
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput1() {
-	  LruCache lru = new LruCache(1);
+      Cache lru = new LruCache(1);
 	  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 	  
 	  String expected = String.format
@@ -74,7 +74,7 @@ class TestUniqueCharacters {
 }
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput2() {
-	  LruCache lru = new LruCache(1);
+      Cache lru = new LruCache(1);
 	  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 	  
 	  String expected = String.format
@@ -95,7 +95,7 @@ class TestUniqueCharacters {
 }
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput3() {
-	  LruCache lru = new LruCache(1);
+      Cache lru = new LruCache(1);
 	  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 	  
 	  String expected = String.format
@@ -121,7 +121,7 @@ class TestUniqueCharacters {
 }
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput4() {
-	  LruCache lru = new LruCache(1);
+	  Cache lru = new LruCache(1);
 	  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 	  
 	  String expected = String.format
@@ -145,7 +145,7 @@ class TestUniqueCharacters {
 }
 	@Test 
 	void checkCacheInserting_shouldStoreOneElement_whenOnlyOneStringInApp() {
-		LruCache lru = new LruCache(1);
+		  Cache lru = new LruCache(1);
 		  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 		  
 		  uniqueCharacters.printUniqs(INPUT0, lru);
@@ -157,7 +157,7 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldStoreMostRecentElement_CacheSizeIsOneAndTwoInputs() {
-		LruCache lru = new LruCache(1);
+		  Cache lru = new LruCache(1);
 		  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 		  
 		  uniqueCharacters.printUniqs(INPUT0, lru);
@@ -170,7 +170,7 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldStoreMostRecentElement_CacheSizeIsFiveAndFiveInputs() {
-		LruCache lru = new LruCache(5);
+		  Cache lru = new LruCache(5);
 		  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 		  
 		  uniqueCharacters.printUniqs(INPUT0, lru);
@@ -186,7 +186,7 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldStoreThreeMostRecentElement_CacheSizeIsThreeAndFiveInputs() {
-		LruCache lru = new LruCache(3);
+		  Cache lru = new LruCache(3);
 		  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 		  
 		  uniqueCharacters.printUniqs(INPUT0, lru);
@@ -202,7 +202,7 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldOneElement_WhenfiveSameInputsWereGiven() {
-		LruCache lru = new LruCache(3);
+		  Cache lru = new LruCache(3);
 		  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 		  
 		  uniqueCharacters.printUniqs(INPUT0, lru);
@@ -218,7 +218,7 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldFigureOutputSourceCorrectly_WhenSameInputsOccur() {
-		LruCache lru = new LruCache(3);
+		  Cache lru = new LruCache(3);
 		  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 		  
 		  uniqueCharacters.printUniqs(INPUT0, lru);
@@ -244,7 +244,7 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldFigureOutputSourceCorrectly_whenDifferentImputOccur() {
-		LruCache lru = new LruCache(2);
+		  Cache lru = new LruCache(2);
 		  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 		  
 		  uniqueCharacters.printUniqs(INPUT0, lru);
@@ -270,7 +270,7 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldFigureOutputSourceCorrectly_whenEmptyStringIsAdded() {
-		LruCache lru = new LruCache(2);
+		  Cache lru = new LruCache(2);
 		  UniqueCharacters uniqueCharacters = new UniqueCharacters();
 		  
 		  uniqueCharacters.printUniqs(EMPTY, lru);

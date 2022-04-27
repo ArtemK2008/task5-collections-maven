@@ -11,11 +11,11 @@ public class UniqueCharacters {
 		this.createdOutoutSourcesString = new StringBuilder();
 	}
 	
-	public String printUniqs(String input, LruCache lru) throws IllegalArgumentException {
+	public String printUniqs(String input, Cache lru) throws IllegalArgumentException {
 		checkForNull(input);
-		if (lru.cache.containsKey(input)) {
+		if (lru.getCache().containsKey(input)) {
 			createdOutoutSourcesString.append(getCacheSource(input));
-			return lru.cache.get(input);
+			return lru.getCache().get(input);
 		} else {
 			String printedOutputString = doThePrint(input);
 			lru.add(input,printedOutputString);
