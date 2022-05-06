@@ -1,13 +1,12 @@
 package com.kalachev.task5;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class UniqueCharacters {
 	
 	
 	public LinkedHashMap<Character, Integer> calculateUniqueCharsAmount(String input) {
-		checkForNull(input);
+		checkForNullOrEmpty(input);
 		LinkedHashMap<Character, Integer> uniqCharactersMap = new LinkedHashMap<>();
 		for (Character c : input.toCharArray()) {
 			if (!uniqCharactersMap.containsKey(c)) {
@@ -19,8 +18,8 @@ public class UniqueCharacters {
 		return uniqCharactersMap;
 	}
 	
-	private void checkForNull(String input) {
-		if(input == null) {
+	private void checkForNullOrEmpty(String input) {
+		if((input == null) || (input.isEmpty())) {
 			throw new IllegalArgumentException();
 		}
 	}

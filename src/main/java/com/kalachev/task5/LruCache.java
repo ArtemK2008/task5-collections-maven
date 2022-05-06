@@ -9,6 +9,9 @@ private Node<K, V> mostRecentlyUsed;
 private int maxSize;
 private int currentSize;
 
+
+static final String NEWLINE = System.lineSeparator();
+
 public LruCache(int maxSize) {
 	super();
 	this.maxSize = maxSize;
@@ -18,12 +21,13 @@ public LruCache(int maxSize) {
 	this.cache = new HashMap<K, Node<K,V>>();
 }
 
+public boolean containsKey(K k) {
+	return cache.containsKey(k);
+}
+
 public V get(K key) {
 	Node<K, V> tempNode = cache.get(key);
-	if(tempNode == null) {
-		return null;
-	}
-	else if (tempNode.key == mostRecentlyUsed.key) {
+	 if (tempNode.key == mostRecentlyUsed.key) {
 		return mostRecentlyUsed.value;
 	}
 	Node<K, V> nextNode = tempNode.next;
@@ -68,6 +72,19 @@ public void put (K key,V value) {
 		}
 		currentSize++;
 	}
+}
+
+public String displayCacheContents() {
+	StringBuilder sb = new StringBuilder();
+	for(K k: cache.keySet()) {
+		sb.append(k); 
+		sb.append(NEWLINE);
+	}
+	int last = sb.lastIndexOf(NEWLINE);
+	if (last >= 0) {
+		sb.delete(last, sb.length());
+	}
+	return sb.toString();
 }
 
 }
