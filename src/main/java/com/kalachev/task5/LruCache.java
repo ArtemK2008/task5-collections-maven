@@ -27,7 +27,10 @@ public boolean containsKey(K k) {
 
 public V get(K key) {
 	Node<K, V> tempNode = cache.get(key);
-	 if (tempNode.key == mostRecentlyUsed.key) {
+	if (tempNode == null) {
+		return null;
+	}
+	else if (tempNode.key == mostRecentlyUsed.key) {
 		return mostRecentlyUsed.value;
 	}
 	Node<K, V> nextNode = tempNode.next;
@@ -35,12 +38,11 @@ public V get(K key) {
 	
 	if(tempNode.key == leastRecentlyUsed.key) {
 		nextNode.prev = null;
-		leastRecentlyUsed = nextNode;		
+		leastRecentlyUsed = nextNode;
 	}
-	
 	else if (tempNode.key != mostRecentlyUsed.key) {
-		prevNode.next = nextNode;
-		nextNode.prev = prevNode;
+		prevNode.next = tempNode.next;
+		nextNode.prev = tempNode.prev;
 	}
 	
 	tempNode.prev = mostRecentlyUsed;

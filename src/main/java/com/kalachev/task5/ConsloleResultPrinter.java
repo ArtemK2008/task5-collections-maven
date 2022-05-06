@@ -9,7 +9,7 @@ public class ConsloleResultPrinter {
 
 	public ConsloleResultPrinter() {
 		super();
-		this.cache = new LruCache<>(3);
+		this.cache = new NewLru<>(3);
 	}
 
 	public Cache<String, LinkedHashMap<Character, Integer>> getCache() {
@@ -18,8 +18,9 @@ public class ConsloleResultPrinter {
 
 
 	public String printUniquesCharsAmounts(String input) {
-		if (cache.containsKey(input)) {
-			return convertData(cache.get(input));
+		if (cache.get(input) != null) {
+			LinkedHashMap<Character, Integer> retrieveNode = cache.get(input);
+			return convertData(retrieveNode);
 		} else {
 			UniqueCharactersCalculator uniqueCharactersCalculator = new UniqueCharactersCalculator();
 			LinkedHashMap<Character, Integer> uniqCharactersWithAmounts = uniqueCharactersCalculator.calculateUniqueCharsAmount(input);

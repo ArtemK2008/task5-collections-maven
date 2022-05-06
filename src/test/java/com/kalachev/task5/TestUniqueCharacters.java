@@ -209,7 +209,7 @@ class TestUniqueCharacters {
 			 resultPrinter.printUniquesCharsAmounts(INPUT1);
 			 resultPrinter.printUniquesCharsAmounts(INPUT4); 
 			 resultPrinter.printUniquesCharsAmounts(INPUT3);
-			String expected =INPUT1 + NEWLINE + INPUT3 + NEWLINE + INPUT4;
+			String expected =INPUT1 + NEWLINE + INPUT4 + NEWLINE + INPUT3;
 			 String actual = resultPrinter.getCache().displayCacheContents();
 			  assertEquals(expected, actual);
 	}
