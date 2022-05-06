@@ -148,7 +148,7 @@ class TestUniqueCharacters {
 		  assertEquals(expected, actual);
 	}
 	@Test 
-	void checkCacheInserting_shouldStoreMostRecentElement_CacheSizeIsOneAndTwoInputs() {
+	void checkCacheInserting_shouldStoreMostRecentElement_whenTwoInputs() {
 		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
 		 resultPrinter.printUniquesCharsAmounts(INPUT0);
 		 resultPrinter.printUniquesCharsAmounts(INPUT1);
@@ -158,7 +158,7 @@ class TestUniqueCharacters {
 	}
 	
 	@Test 
-	void checkCacheInserting_shouldStoreMostRecentElement_CacheSizeIsThreeAndFiveInputs() {
+	void checkCacheInserting_shouldStoreMostRecentElement_whenFiveInputs() {
 		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
 		 resultPrinter.printUniquesCharsAmounts(INPUT0);
 		 resultPrinter.printUniquesCharsAmounts(INPUT1);
@@ -170,18 +170,6 @@ class TestUniqueCharacters {
 		  assertEquals(expected, actual);
 	}
 	
-	@Test 
-	void checkCacheInserting_shouldStoreThreeMostRecentElement_CacheSizeIsThreeAndFiveInputs() {
-		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
-		 resultPrinter.printUniquesCharsAmounts(INPUT0);
-		 resultPrinter.printUniquesCharsAmounts(INPUT1);
-		 resultPrinter.printUniquesCharsAmounts(INPUT2);
-		 resultPrinter.printUniquesCharsAmounts(INPUT3);
-		 resultPrinter.printUniquesCharsAmounts(INPUT4);
-		String expected =INPUT2 +NEWLINE + INPUT3 + NEWLINE + INPUT4;
-		 String actual = resultPrinter.getCache().displayCacheContents();
-		  assertEquals(expected, actual);
-	}
 	
 	@Test 
 	void checkCacheInserting_shouldOneElement_WhenfiveSameInputsWereGiven() {

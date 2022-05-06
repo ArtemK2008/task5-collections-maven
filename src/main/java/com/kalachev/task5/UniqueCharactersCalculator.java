@@ -2,7 +2,7 @@ package com.kalachev.task5;
 
 import java.util.LinkedHashMap;
 
-public class UniqueCharacters {
+public class UniqueCharactersCalculator {
 	
 	
 	public LinkedHashMap<Character, Integer> calculateUniqueCharsAmount(String input) {

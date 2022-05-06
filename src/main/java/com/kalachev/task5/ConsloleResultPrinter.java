@@ -21,15 +21,15 @@ public class ConsloleResultPrinter {
 		if (cache.containsKey(input)) {
 			return convertData(cache.get(input));
 		} else {
-			UniqueCharacters uniqueCharacters = new UniqueCharacters();
-			LinkedHashMap<Character, Integer> uniqCharactersMap = uniqueCharacters.calculateUniqueCharsAmount(input);
+			UniqueCharactersCalculator uniqueCharactersCalculator = new UniqueCharactersCalculator();
+			LinkedHashMap<Character, Integer> uniqCharactersWithAmounts = uniqueCharactersCalculator.calculateUniqueCharsAmount(input);
 			StringBuilder sb = new StringBuilder();
 			sb.append(input);
 			if (!input.isEmpty()) {
 				sb.append(NEWLINE);
 			}
-			sb.append(convertData(uniqCharactersMap));
-			cache.put(input, uniqCharactersMap);
+			sb.append(convertData(uniqCharactersWithAmounts));
+			cache.put(input, uniqCharactersWithAmounts);
 			return sb.toString();
 
 		}
