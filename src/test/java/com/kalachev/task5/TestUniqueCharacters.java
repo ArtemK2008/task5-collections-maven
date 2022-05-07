@@ -3,6 +3,9 @@ package com.kalachev.task5;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class TestUniqueCharacters {
@@ -23,14 +26,14 @@ class TestUniqueCharacters {
 	
 	@Test
 	void printUniques_shouldReturnIlligalArgumentException_whenInpuIsNull() {
-    ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();		  
-	     assertThrows(IllegalArgumentException.class, () -> resultPrinter.printUniquesCharsAmounts(NULL));
+    UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
+	     assertThrows(IllegalArgumentException.class, () -> calc.convertAndCacheInput(NULL));
 	}
 	
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenEmptyInput() {
-		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();		  
-	     assertThrows(IllegalArgumentException.class, () -> resultPrinter.printUniquesCharsAmounts(EMPTY));
+		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();	  
+	     assertThrows(IllegalArgumentException.class, () -> calc.convertAndCacheInput(EMPTY));
 }
 	
 	@Test
@@ -69,6 +72,7 @@ class TestUniqueCharacters {
 	  String actual = resultPrinter.printUniquesCharsAmounts(INPUT1);
 	  assertEquals(expected, actual);
 }
+	
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput2() {
 		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
@@ -140,78 +144,95 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldStoreOneElement_whenOnlyOneStringInApp() {
-		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
+		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
 		  
-		  resultPrinter.printUniquesCharsAmounts(INPUT0);
-		  String expected = INPUT0;
-		  String actual = resultPrinter.getCache().displayCacheContents();
-		  assertEquals(expected, actual);
+		calc.convertAndCacheInput(INPUT0);
+		  List<String> expected = new ArrayList<String>(); 
+		  expected.add(INPUT0);
+		  List<String> actual = calc.getCache().cacheContent();
+		  assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
 	}
+	
+	
 	@Test 
 	void checkCacheInserting_shouldStoreMostRecentElement_whenTwoInputs() {
-		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
-		 resultPrinter.printUniquesCharsAmounts(INPUT0);
-		 resultPrinter.printUniquesCharsAmounts(INPUT1);
-		  String expected = INPUT0 + NEWLINE+ INPUT1;
-		  String actual = resultPrinter.getCache().displayCacheContents();
-		  assertEquals(expected, actual);
+	   	UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
+	     calc.convertAndCacheInput(INPUT0);
+	     calc.convertAndCacheInput(INPUT1);
+		 List<String> expected = new ArrayList<String>(); 
+		  expected.add(INPUT1);
+		  expected.add(INPUT0);
+		  List<String> actual = calc.getCache().cacheContent();
+		  assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
 	}
 	
 	@Test 
 	void checkCacheInserting_shouldStoreMostRecentElement_whenFiveInputs() {
-		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
-		 resultPrinter.printUniquesCharsAmounts(INPUT0);
-		 resultPrinter.printUniquesCharsAmounts(INPUT1);
-		 resultPrinter.printUniquesCharsAmounts(INPUT2);
-		 resultPrinter.printUniquesCharsAmounts(INPUT3);
-		 resultPrinter.printUniquesCharsAmounts(INPUT4);
-		String expected =INPUT2 + NEWLINE + INPUT3 + NEWLINE + INPUT4;
-		 String actual = resultPrinter.getCache().displayCacheContents();
-		  assertEquals(expected, actual);
+		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
+		calc.convertAndCacheInput(INPUT0);
+		calc.convertAndCacheInput(INPUT1);
+		calc.convertAndCacheInput(INPUT2);
+		calc.convertAndCacheInput(INPUT3);
+		calc.convertAndCacheInput(INPUT4);
+		 List<String> expected = new ArrayList<String>(); 
+		  expected.add(INPUT4);
+		  expected.add(INPUT2);
+		  expected.add(INPUT3);
+		  List<String> actual = calc.getCache().cacheContent();
+		  assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
 	}
 	
 	
 	@Test 
 	void checkCacheInserting_shouldOneElement_WhenfiveSameInputsWereGiven() {
-		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
-		 resultPrinter.printUniquesCharsAmounts(INPUT0);
-		 resultPrinter.printUniquesCharsAmounts(INPUT0);
-		 resultPrinter.printUniquesCharsAmounts(INPUT0);
-		 resultPrinter.printUniquesCharsAmounts(INPUT0);
-		 resultPrinter.printUniquesCharsAmounts(INPUT0);
-		String expected =INPUT0;
-		 String actual = resultPrinter.getCache().displayCacheContents();
-		  assertEquals(expected, actual);
+		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
+		calc.convertAndCacheInput(INPUT0);
+		calc.convertAndCacheInput(INPUT0);
+		calc.convertAndCacheInput(INPUT0);
+		calc.convertAndCacheInput(INPUT0);
+		calc.convertAndCacheInput(INPUT0);
+		 List<String> expected = new ArrayList<String>(); 
+		  expected.add(INPUT0);
+		  List<String> actual = calc.getCache().cacheContent();
+		  assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
 	}
 	
+
 	@Test 
 	void checkCacheInserting_shouldFigureOutputSourceCorrectly_WhenSameInputsOccur() {
-		  ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
-			 resultPrinter.printUniquesCharsAmounts(INPUT0);
-			 resultPrinter.printUniquesCharsAmounts(INPUT1);
-			 resultPrinter.printUniquesCharsAmounts(INPUT2);
-			 resultPrinter.printUniquesCharsAmounts(INPUT3);
-			 resultPrinter.printUniquesCharsAmounts(INPUT3);
-			String expected =INPUT1 + NEWLINE + INPUT2 + NEWLINE + INPUT3;
-			 String actual = resultPrinter.getCache().displayCacheContents();
-			  assertEquals(expected, actual);
+		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
+		     calc.convertAndCacheInput(INPUT0);
+	         calc.convertAndCacheInput(INPUT1);
+		     calc.convertAndCacheInput(INPUT2);
+		     calc.convertAndCacheInput(INPUT3);
+		     calc.convertAndCacheInput(INPUT3);
+			 List<String> expected = new ArrayList<String>(); 
+			  expected.add(INPUT1);
+			  expected.add(INPUT2);
+			  expected.add(INPUT3);
+			  List<String> actual = calc.getCache().cacheContent();
+			  assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
 	}
+	
 	
 	@Test 
 	void checkCacheInserting_shouldFigureOutputSourceCorrectly_WhenMultipleInputsOccur() {
-		  ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
-			 resultPrinter.printUniquesCharsAmounts(INPUT0);
-			 resultPrinter.printUniquesCharsAmounts(INPUT1);
-			 resultPrinter.printUniquesCharsAmounts(INPUT2);
-			 resultPrinter.printUniquesCharsAmounts(INPUT0);
-			 resultPrinter.printUniquesCharsAmounts(INPUT0);
-			 resultPrinter.printUniquesCharsAmounts(INPUT3);
-			 resultPrinter.printUniquesCharsAmounts(INPUT1);
-			 resultPrinter.printUniquesCharsAmounts(INPUT4); 
-			 resultPrinter.printUniquesCharsAmounts(INPUT3);
-			String expected =INPUT1 + NEWLINE + INPUT4 + NEWLINE + INPUT3;
-			 String actual = resultPrinter.getCache().displayCacheContents();
-			  assertEquals(expected, actual);
+		      UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
+		      calc.convertAndCacheInput(INPUT0);
+		      calc.convertAndCacheInput(INPUT1);
+		      calc.convertAndCacheInput(INPUT2);
+		      calc.convertAndCacheInput(INPUT0);
+		      calc.convertAndCacheInput(INPUT0);
+		      calc.convertAndCacheInput(INPUT3);
+		      calc.convertAndCacheInput(INPUT1);
+		      calc.convertAndCacheInput(INPUT4);
+		      calc.convertAndCacheInput(INPUT3);
+			  List<String> expected = new ArrayList<String>(); 
+			  expected.add(INPUT1);
+			  expected.add(INPUT4);
+			  expected.add(INPUT3);
+			  List<String> actual = calc.getCache().cacheContent();
+			  assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
 	}
 	
 }

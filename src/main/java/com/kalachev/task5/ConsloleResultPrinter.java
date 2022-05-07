@@ -5,35 +5,20 @@ import java.util.Map;
 
 public class ConsloleResultPrinter {
 	static final String NEWLINE = System.lineSeparator();
-	Cache<String, LinkedHashMap<Character, Integer>> cache;
 
-	public ConsloleResultPrinter() {
-		super();
-		this.cache = new NewLru<>(3);
-	}
-
-	public Cache<String, LinkedHashMap<Character, Integer>> getCache() {
-		return cache;
-	}
 
 
 	public String printUniquesCharsAmounts(String input) {
-		if (cache.get(input) != null) {
-			LinkedHashMap<Character, Integer> retrieveNode = cache.get(input);
-			return convertData(retrieveNode);
-		} else {
 			UniqueCharactersCalculator uniqueCharactersCalculator = new UniqueCharactersCalculator();
-			LinkedHashMap<Character, Integer> uniqCharactersWithAmounts = uniqueCharactersCalculator.calculateUniqueCharsAmount(input);
+			LinkedHashMap<Character, Integer> uniqCharactersWithAmounts = uniqueCharactersCalculator.convertInput(input);
 			StringBuilder sb = new StringBuilder();
 			sb.append(input);
 			if (!input.isEmpty()) {
 				sb.append(NEWLINE);
 			}
 			sb.append(convertData(uniqCharactersWithAmounts));
-			cache.put(input, uniqCharactersWithAmounts);
 			return sb.toString();
 
-		}
 	}
 
 	private String convertData(LinkedHashMap<Character, Integer> charsCollection) {

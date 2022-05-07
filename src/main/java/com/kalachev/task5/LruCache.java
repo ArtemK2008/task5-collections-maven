@@ -1,6 +1,8 @@
 package com.kalachev.task5;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class LruCache<K,V> implements Cache<K, V> {
 private HashMap<K,Node<K,V>> cache;
@@ -34,13 +36,13 @@ public V get(K key) {
 		return mostRecentlyUsed.value;
 	}
 	Node<K, V> nextNode = tempNode.next;
-	Node<K, V> prevNode = tempNode.prev;
 	
 	if(tempNode.key == leastRecentlyUsed.key) {
 		nextNode.prev = null;
 		leastRecentlyUsed = nextNode;
 	}
 	else if (tempNode.key != mostRecentlyUsed.key) {
+		Node<K, V> prevNode = tempNode.prev;
 		prevNode.next = tempNode.next;
 		nextNode.prev = tempNode.prev;
 	}
@@ -49,7 +51,6 @@ public V get(K key) {
 	mostRecentlyUsed.next = tempNode;
 	mostRecentlyUsed = tempNode;
 	mostRecentlyUsed.next = null;
-	
 	return tempNode.value;	
 }
 
@@ -76,17 +77,12 @@ public void put (K key,V value) {
 	}
 }
 
-public String displayCacheContents() {
-	StringBuilder sb = new StringBuilder();
-	for(K k: cache.keySet()) {
-		sb.append(k); 
-		sb.append(NEWLINE);
+public List<K> cacheContent() {
+	List<K> content = new ArrayList<>();
+	for(K k : cache.keySet()) {
+		content.add(k);
 	}
-	int last = sb.lastIndexOf(NEWLINE);
-	if (last >= 0) {
-		sb.delete(last, sb.length());
-	}
-	return sb.toString();
+	return content;
 }
 
 }
