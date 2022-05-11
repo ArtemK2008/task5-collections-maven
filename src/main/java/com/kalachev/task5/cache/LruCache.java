@@ -1,4 +1,4 @@
-package com.kalachev.task5;
+package com.kalachev.task5.cache;
 
 import java.util.ArrayList;
 import java.util.HashMap;

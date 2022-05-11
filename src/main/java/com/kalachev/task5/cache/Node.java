@@ -1,4 +1,4 @@
-package com.kalachev.task5;
+package com.kalachev.task5.cache;
 
 public class Node<T,U> {
    T key;

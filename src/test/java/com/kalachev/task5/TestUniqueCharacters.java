@@ -1,44 +1,40 @@
 package com.kalachev.task5;
 
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.kalachev.task5.characters_counter.ConsloleResultPrinter;
+import com.kalachev.task5.characters_counter.UniqueCharactersCounter;
+
 class TestUniqueCharacters {
 
-	static final String INPUT0 = "hello word!";
-	static final String INPUT1 = "doing tests";
-	static final String INPUT2 = "is it working?";
-	static final String INPUT3 = "printing uniques correctly?";
-	static final String INPUT4 = "and what about cash?";
-	static final String EMPTY= "";
-	static final String NULL= null;
 	static final String NEWLINE = System.lineSeparator();
-	
-	
-	
-	
-	
 	
 	@Test
 	void printUniques_shouldReturnIlligalArgumentException_whenInpuIsNull() {
-    UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
-	     assertThrows(IllegalArgumentException.class, () -> calc.convertAndCacheInput(NULL));
+    UniqueCharactersCounter calc = new UniqueCharactersCounter();
+    String NULL= null;
+	     assertThrows(IllegalArgumentException.class, () -> calc.calculateCharactersForOutput(NULL));
 	}
 	
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenEmptyInput() {
-		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();	  
-	     assertThrows(IllegalArgumentException.class, () -> calc.convertAndCacheInput(EMPTY));
+		UniqueCharactersCounter calc = new UniqueCharactersCounter();	  
+		String EMPTY= "";
+	     assertThrows(IllegalArgumentException.class, () -> calc.calculateCharactersForOutput(EMPTY));
 }
 	
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput0() {
 		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
+		String INPUT0 = "hello word!";
 		
 	  String expected = String.format
 			  ("hello word!%n" +
@@ -57,6 +53,7 @@ class TestUniqueCharacters {
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput1() {
 		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
+		String INPUT1 = "doing tests";
 	  
 	  String expected = String.format
 			  ("doing tests%n" +
@@ -76,7 +73,7 @@ class TestUniqueCharacters {
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput2() {
 		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
-	  
+		String INPUT2 = "is it working?";
 	  String expected = String.format
 			  ("is it working?%n" +
 	           "\"i\" - 3%n" +
@@ -96,6 +93,7 @@ class TestUniqueCharacters {
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput3() {
 		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
+		String INPUT3 = "printing uniques correctly?";
 	  
 	  String expected = String.format
 			  ("printing uniques correctly?%n" +
@@ -121,6 +119,7 @@ class TestUniqueCharacters {
 	@Test
 	void printUniques_shouldPrintUniqueCharsAndItsAmount_whenInput4() {
 		ConsloleResultPrinter resultPrinter = new ConsloleResultPrinter();
+		String INPUT4 = "and what about cash?";
 	  
 	  String expected = String.format
 			  ("and what about cash?%n" +
@@ -144,9 +143,10 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldStoreOneElement_whenOnlyOneStringInApp() {
-		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
+		UniqueCharactersCounter calc = new UniqueCharactersCounter();
+		String INPUT0 = "hello word!";
 		  
-		calc.convertAndCacheInput(INPUT0);
+		calc.calculateCharactersForOutput(INPUT0);
 		  List<String> expected = new ArrayList<String>(); 
 		  expected.add(INPUT0);
 		  List<String> actual = calc.getCache().cacheContent();
@@ -156,9 +156,11 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldStoreMostRecentElement_whenTwoInputs() {
-	   	UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
-	     calc.convertAndCacheInput(INPUT0);
-	     calc.convertAndCacheInput(INPUT1);
+	   	UniqueCharactersCounter calc = new UniqueCharactersCounter();
+	   	String INPUT0 = "hello word!";
+	   	String INPUT1 = "doing tests";
+	     calc.calculateCharactersForOutput(INPUT0);
+	     calc.calculateCharactersForOutput(INPUT1);
 		 List<String> expected = new ArrayList<String>(); 
 		  expected.add(INPUT1);
 		  expected.add(INPUT0);
@@ -168,12 +170,17 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldStoreMostRecentElement_whenFiveInputs() {
-		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
-		calc.convertAndCacheInput(INPUT0);
-		calc.convertAndCacheInput(INPUT1);
-		calc.convertAndCacheInput(INPUT2);
-		calc.convertAndCacheInput(INPUT3);
-		calc.convertAndCacheInput(INPUT4);
+		UniqueCharactersCounter calc = new UniqueCharactersCounter();
+		String INPUT0 = "hello word!";
+		String INPUT1 = "doing tests";
+		String INPUT2 = "is it working?";
+		String INPUT3 = "printing uniques correctly?";
+		String INPUT4 = "and what about cash?";
+		calc.calculateCharactersForOutput(INPUT0);
+		calc.calculateCharactersForOutput(INPUT1);
+		calc.calculateCharactersForOutput(INPUT2);
+		calc.calculateCharactersForOutput(INPUT3);
+		calc.calculateCharactersForOutput(INPUT4);
 		 List<String> expected = new ArrayList<String>(); 
 		  expected.add(INPUT4);
 		  expected.add(INPUT2);
@@ -185,12 +192,13 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldOneElement_WhenfiveSameInputsWereGiven() {
-		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
-		calc.convertAndCacheInput(INPUT0);
-		calc.convertAndCacheInput(INPUT0);
-		calc.convertAndCacheInput(INPUT0);
-		calc.convertAndCacheInput(INPUT0);
-		calc.convertAndCacheInput(INPUT0);
+		UniqueCharactersCounter calc = new UniqueCharactersCounter();
+		String INPUT0 = "hello word!";
+		calc.calculateCharactersForOutput(INPUT0);
+		calc.calculateCharactersForOutput(INPUT0);
+		calc.calculateCharactersForOutput(INPUT0);
+		calc.calculateCharactersForOutput(INPUT0);
+		calc.calculateCharactersForOutput(INPUT0);
 		 List<String> expected = new ArrayList<String>(); 
 		  expected.add(INPUT0);
 		  List<String> actual = calc.getCache().cacheContent();
@@ -200,12 +208,16 @@ class TestUniqueCharacters {
 
 	@Test 
 	void checkCacheInserting_shouldFigureOutputSourceCorrectly_WhenSameInputsOccur() {
-		UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
-		     calc.convertAndCacheInput(INPUT0);
-	         calc.convertAndCacheInput(INPUT1);
-		     calc.convertAndCacheInput(INPUT2);
-		     calc.convertAndCacheInput(INPUT3);
-		     calc.convertAndCacheInput(INPUT3);
+		UniqueCharactersCounter calc = new UniqueCharactersCounter();
+		String INPUT0 = "hello word!";
+		String INPUT1 = "doing tests";
+		String INPUT2 = "is it working?";
+		String INPUT3 = "printing uniques correctly?";
+		     calc.calculateCharactersForOutput(INPUT0);
+	         calc.calculateCharactersForOutput(INPUT1);
+		     calc.calculateCharactersForOutput(INPUT2);
+		     calc.calculateCharactersForOutput(INPUT3);
+		     calc.calculateCharactersForOutput(INPUT3);
 			 List<String> expected = new ArrayList<String>(); 
 			  expected.add(INPUT1);
 			  expected.add(INPUT2);
@@ -217,22 +229,34 @@ class TestUniqueCharacters {
 	
 	@Test 
 	void checkCacheInserting_shouldFigureOutputSourceCorrectly_WhenMultipleInputsOccur() {
-		      UniqueCharactersCalculator calc = new UniqueCharactersCalculator();
-		      calc.convertAndCacheInput(INPUT0);
-		      calc.convertAndCacheInput(INPUT1);
-		      calc.convertAndCacheInput(INPUT2);
-		      calc.convertAndCacheInput(INPUT0);
-		      calc.convertAndCacheInput(INPUT0);
-		      calc.convertAndCacheInput(INPUT3);
-		      calc.convertAndCacheInput(INPUT1);
-		      calc.convertAndCacheInput(INPUT4);
-		      calc.convertAndCacheInput(INPUT3);
+		      UniqueCharactersCounter calc = new UniqueCharactersCounter();
+		      String INPUT0 = "hello word!";
+		      String INPUT1 = "doing tests";
+		      String INPUT2 = "is it working?";
+		      String INPUT3 = "printing uniques correctly?";
+		      String INPUT4 = "and what about cash?";
+		      calc.calculateCharactersForOutput(INPUT0);
+		      calc.calculateCharactersForOutput(INPUT1);
+		      calc.calculateCharactersForOutput(INPUT2);
+		      calc.calculateCharactersForOutput(INPUT0);
+		      calc.calculateCharactersForOutput(INPUT0);
+		      calc.calculateCharactersForOutput(INPUT3);
+		      calc.calculateCharactersForOutput(INPUT1);
+		      calc.calculateCharactersForOutput(INPUT4);
+		      calc.calculateCharactersForOutput(INPUT3);
 			  List<String> expected = new ArrayList<String>(); 
 			  expected.add(INPUT1);
 			  expected.add(INPUT4);
 			  expected.add(INPUT3);
 			  List<String> actual = calc.getCache().cacheContent();
 			  assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
+	}
+	
+	@Test
+	void test_with_verify() {
+		UniqueCharactersCounter mockCacl = mock(UniqueCharactersCounter.class);
+		 String INPUT0 = "hello word!";
+		 mockCacl.calculateCharactersForOutput(INPUT0);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.kalachev.task5;
+package com.kalachev.task5.characters_counter;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -9,8 +9,8 @@ public class ConsloleResultPrinter {
 
 
 	public String printUniquesCharsAmounts(String input) {
-			UniqueCharactersCalculator uniqueCharactersCalculator = new UniqueCharactersCalculator();
-			LinkedHashMap<Character, Integer> uniqCharactersWithAmounts = uniqueCharactersCalculator.convertInput(input);
+			UniqueCharactersCounter uniqueCharactersCounter = new UniqueCharactersCounter();
+			LinkedHashMap<Character, Integer> uniqCharactersWithAmounts = uniqueCharactersCounter.calculateCharactersForOutput(input);
 			StringBuilder sb = new StringBuilder();
 			sb.append(input);
 			if (!input.isEmpty()) {
